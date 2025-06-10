@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { formatTimeSince } from "../utils/time";
+import { formatTimeSince } from "@utils/time";
 
-export const useLastOnline = (timestamp: number) => {
-  const [timeSince, setTimeSince] = useState(formatTimeSince(timestamp));
+export const useLastOnline = (timestamp: number, initialTime: string) => {
+  const [timeSince, setTimeSince] = useState(initialTime);
 
   useEffect(() => {
     const interval = setInterval(() => {

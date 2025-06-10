@@ -6,6 +6,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { FallbackAvatar } from "@components/shared/FallbackAvatar";
 import { LoadingState } from "@components/shared/LoadingState";
 import { ErrorState } from "@components/shared/ErrorState";
+import { formatTimeSince } from "@utils/time";
 
 export const PlayerProfilePage = () => {
   const { username } = useParams<{ username: string }>();
@@ -20,7 +21,14 @@ export const PlayerProfilePage = () => {
     enabled: !!username,
   });
 
-  const timeSinceLastOnline = useLastOnline(profile?.last_online || 0);
+  // Calculate initial time difference before using the hook
+  const initialTimeSince = profile?.last_online
+    ? formatTimeSince(profile.last_online)
+    : "00:00:00";
+  const timeSinceLastOnline = useLastOnline(
+    profile?.last_online || 0,
+    initialTimeSince
+  );
 
   if (isLoading) {
     return <LoadingState message="Loading grandmaster profile..." />;

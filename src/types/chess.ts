@@ -14,8 +14,4 @@ export interface PlayerProfile {
   verified?: boolean;
   league?: string;
   avatar?: string;
-  location?: string;
-  twitch_url?: string;
-  youtube_url?: string;
-  twitter_url?: string;
 }
